@@ -30,7 +30,7 @@ const SignUp = () => {
                 <label htmlFor="confirm">Confirm Password</label>
                 <input className='input-full' type="password" name='confirm' required />
                 <input className='btn-color input-full' type="submit" value="Sign Up"   onClick={handleForm}/>
-                <p className='para'>Already have an account?<Link to='/login'>Login</Link></p>
+                <p className='para'>Already have an account?<Link to='/login'> Login</Link></p>
 
                 <div className='or-class'>
                     <hr />

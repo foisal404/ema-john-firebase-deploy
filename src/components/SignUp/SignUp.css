@@ -5,6 +5,7 @@
     border-radius: 10px;
     font-family: 'Lato';
     color: #53616a;
+    box-shadow: -12px 12px  #FFE0B3;
 }
 .form-div{
   padding: 42px;  
@@ -37,7 +38,7 @@ input.input-full{
 }
 .para a{
   text-decoration: none;
-  color: orangered;
+  color: #FF9900;
 }
 .or-class{
   display: flex;
