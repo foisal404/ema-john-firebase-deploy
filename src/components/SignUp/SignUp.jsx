@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const SignUp = () => {
     // contest api 
-    const {googleSignin}=useContext(authContext);
+    const {googleSignin,signUp}=useContext(authContext);
     //google sign in
     const handlerGoogleIN=()=>{
         googleSignin()
@@ -32,7 +32,17 @@ const SignUp = () => {
             toast("Password doesn't match")
             return;
         }
-        console.log(email,password);
+        signUp(email,password)
+        .then(result=>{
+            const logged=result.user;
+            toast(logged)
+            toast("succesfully create Account")
+        })
+        .catch(error=>{
+            console.log(error.message)
+            toast(error.message)
+        })
+        
     }
     return (
         <div className='section-center'>
