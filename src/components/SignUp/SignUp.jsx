@@ -1,17 +1,22 @@
 import React from 'react';
+import './SignUp.css'
+
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
     return (
         <div className='section-center'>
-                <h1 className='head-text'>Login</h1>
+                <h1 className='head-text'>Sign Up</h1>
             <form className='form-div'>
                 <label htmlFor="email">Email</label>
                 <input className='input-full' type="email" name='email' id='email'  required/>
                 <label htmlFor="password">Password</label>
                 <input className='input-full' type="password" name='password' required />
-                <input className='btn-color input-full' type="submit" value="Login"  />
-                <p className='para'>New to Ema-john?<Link to='/signup'> Create New Account</Link></p>
+                <label htmlFor="confirm">Confirm Password</label>
+                <input className='input-full' type="password" name='confirm' required />
+                <input className='btn-color input-full' type="submit" value="Sign Up"  />
+                <p className='para'>Already have an account?<Link to='/login'>Login</Link></p>
+
                 <div className='or-class'>
                     <hr />
                     <small>or</small>
@@ -24,4 +29,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
