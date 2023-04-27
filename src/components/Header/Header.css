@@ -16,3 +16,13 @@ nav.header a{
 nav.header a:hover{
     color: orange;
 }
+.user-section{
+    color: white;
+    
+}
+.user-section button{
+    color: white;
+    margin: 0 20px;
+    background-color: rgba(127, 255, 212, 0.347);
+
+}

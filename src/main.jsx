@@ -17,6 +17,7 @@ import SignUp from './components/SignUp/SignUp';
 import AuthProvider from './AuthProvider/AuthProvider';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProtectedRoute from './route/ProtectedRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path:'checkout',
-        element: <Checkout></Checkout>
+        element: <ProtectedRoute><Checkout></Checkout></ProtectedRoute>
       },
       {
         path: 'login',
