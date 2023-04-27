@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const {googleSignin}=useContext(authContext)
+    const {googleSignin,singIn}=useContext(authContext)
     const handlerGoogleIN= ()=>{
         googleSignin()
         .then(result=>{
             console.log(result.user);
             console.log("log In");
+            toast("log in Succesfully")
         })
         .catch(error=>{
             console.log(error.nessage);
+            toast(error.nessage);
         })
     }
     const handleForm=event=>{
@@ -19,7 +22,15 @@ const Login = () => {
         const form=event.target;
         const email=form.email.value;
         const password=form.password.value;
-        console.log(email,password);
+        singIn(email,password)
+        .then(result=>{
+            const logged=result.user;
+            toast(`succesfully ${logged.email}   in`)
+        })
+        .catch(error=>{
+            console.error(error.message);
+            toast(error.message)
+        })
     }
     return (
         <div className='section-center'>

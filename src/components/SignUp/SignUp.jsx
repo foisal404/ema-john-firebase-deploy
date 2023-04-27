@@ -35,8 +35,7 @@ const SignUp = () => {
         signUp(email,password)
         .then(result=>{
             const logged=result.user;
-            toast(logged)
-            toast("succesfully create Account")
+            toast(`succesfully Account creeate ${logged.email}`)
         })
         .catch(error=>{
             console.log(error.message)
