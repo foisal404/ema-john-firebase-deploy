@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './SignUp.css'
 
 import { Link } from 'react-router-dom';
+import { authContext } from '../../AuthProvider/AuthProvider';
 
 const SignUp = () => {
+    const {googleSignin}=useContext(authContext);
+    const handlerGoogleIN=()=>{
+        googleSignin()
+        .then(result=>{
+            console.log(result.user);
+            console.log("log In");
+        })
+        .catch(error=>{
+            console.log(error.nessage);
+        })
+    }
+    const handleForm=event=>{
+        event.preventDefault();
+    }
     return (
         <div className='section-center'>
                 <h1 className='head-text'>Sign Up</h1>
@@ -14,7 +29,7 @@ const SignUp = () => {
                 <input className='input-full' type="password" name='password' required />
                 <label htmlFor="confirm">Confirm Password</label>
                 <input className='input-full' type="password" name='confirm' required />
-                <input className='btn-color input-full' type="submit" value="Sign Up"  />
+                <input className='btn-color input-full' type="submit" value="Sign Up"   onClick={handleForm}/>
                 <p className='para'>Already have an account?<Link to='/login'>Login</Link></p>
 
                 <div className='or-class'>
@@ -22,7 +37,7 @@ const SignUp = () => {
                     <small>or</small>
                     <hr />
                 </div>
-                <button className='input-full bg-white-btn'>Continue with Google</button>
+                <button className='input-full bg-white-btn' onClick={handlerGoogleIN}>Continue with Google</button>
 
             </form>
         </div>

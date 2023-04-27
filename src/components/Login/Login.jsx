@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const {googleSignin}=useContext(authContext)
+    const handlerGoogleIN= ()=>{
+        googleSignin()
+        .then(result=>{
+            console.log(result.user);
+            console.log("log In");
+        })
+        .catch(error=>{
+            console.log(error.nessage);
+        })
+    }
+    const handleForm=event=>{
+        event.preventDefault();
+    }
     return (
         <div className='section-center'>
                 <h1 className='head-text'>Login</h1>
@@ -10,14 +25,14 @@ const Login = () => {
                 <input className='input-full' type="email" name='email' id='email'  required/>
                 <label htmlFor="password">Password</label>
                 <input className='input-full' type="password" name='password' required />
-                <input className='btn-color input-full' type="submit" value="Login"  />
+                <input className='btn-color input-full' type="submit" value="Login"  onClick={handleForm} />
                 <p className='para'>New to Ema-john?<Link to='/signup'> Create New Account</Link></p>
                 <div className='or-class'>
                     <hr />
                     <small>or</small>
                     <hr />
                 </div>
-                <button className='input-full bg-white-btn'>Continue with Google</button>
+                <button className='input-full bg-white-btn' onClick={handlerGoogleIN}>Continue with Google</button>
 
             </form>
         </div>
