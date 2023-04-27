@@ -6,6 +6,7 @@ export const authContext=createContext(null);
 
 const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null);
+    const [loader,setLoader]=useState(true)
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
     const googleSignin=()=>{
@@ -13,6 +14,7 @@ const AuthProvider = ({children}) => {
     }
 
     const signUp=(email,password)=>{
+        setLoader(true)
         return createUserWithEmailAndPassword(auth,email,password);
     }
     const logOut=()=>{
@@ -20,6 +22,7 @@ const AuthProvider = ({children}) => {
     }
 
     const singIn=(email,password)=>{
+        setLoader(true)
         return signInWithEmailAndPassword(auth,email,password);
     }
 
@@ -28,6 +31,7 @@ const AuthProvider = ({children}) => {
             onAuthStateChanged(auth,CurrentUser=>{
                 console.log("auth change",CurrentUser);
                 setUser(CurrentUser)
+                setLoader(false)
             })
         }
        
@@ -40,7 +44,9 @@ const AuthProvider = ({children}) => {
         googleSignin,
         signUp,
         singIn,
+        loader,
         logOut
+        
     }
     return (
         <authContext.Provider value={use}>

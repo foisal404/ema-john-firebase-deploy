@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const {googleSignin,singIn}=useContext(authContext)
+    const navigate=useNavigate();
+    const location=useLocation();
+    const from = location.state?.from?.pathname || '/';
+    console.log(location);
     const handlerGoogleIN= ()=>{
         googleSignin()
         .then(result=>{
@@ -26,6 +30,7 @@ const Login = () => {
         .then(result=>{
             const logged=result.user;
             toast(`succesfully ${logged.email}   in`)
+            navigate(from, { replace: true })
         })
         .catch(error=>{
             console.error(error.message);
@@ -50,7 +55,7 @@ const Login = () => {
                     <small>or</small>
                     <hr />
                 </div>
-                <button className='input-full bg-white-btn' >Continue with Google</button>
+                <button className='input-full bg-white-btn' onClick={handlerGoogleIN} >Continue with Google</button>
 
             </div>
         </div>
